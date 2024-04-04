@@ -85,7 +85,7 @@ class _PreviewState extends State<Preview> {
         body: Stack(
           children: [
             Container(
-                constraints: BoxConstraints.expand(),
+                constraints: const BoxConstraints.expand(),
                 child: CameraPreview(cameraController)),
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
