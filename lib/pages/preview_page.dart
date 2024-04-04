@@ -18,8 +18,10 @@ class _PreviewState extends State<Preview> {
 
   @override
   void initState() {
-    _requestLocationPermission();
-    initializeCamera();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await requestLocationPermission();
+      initializeCamera();
+    });
     super.initState();
   }
 
@@ -29,7 +31,7 @@ class _PreviewState extends State<Preview> {
     super.dispose();
   }
 
-  Future<void> _requestLocationPermission() async {
+  Future<void> requestLocationPermission() async {
     var status = await Permission.location.status;
     if (status.isDenied || status.isPermanentlyDenied) {
       Map<Permission, PermissionStatus> statuses = await [
